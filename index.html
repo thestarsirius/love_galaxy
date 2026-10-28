@@ -1,1 +1,689 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05020c">
+<meta name="description" content="أحبك بكل لغات العالم ♡ قلب من النجوم والكلمات">
+<title>أحبك بكل لغات العالم ♡</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💖%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="gfonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Quicksand:wght@500;600;700&display=swap">
+<style>
+@property --bg1{syntax:'<color>';inherits:true;initial-value:#05020c}
+@property --bg2{syntax:'<color>';inherits:true;initial-value:#1a0b36}
+@property --bg3{syntax:'<color>';inherits:true;initial-value:#4a1259}
+@property --n1{syntax:'<color>';inherits:true;initial-value:transparent}
+@property --n2{syntax:'<color>';inherits:true;initial-value:transparent}
+@property --n3{syntax:'<color>';inherits:true;initial-value:transparent}
+@property --glow{syntax:'<color>';inherits:true;initial-value:transparent}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:#05020c}
+:root{--size:clamp(260px,min(94vw,calc(100vh - 270px)),800px)}
+@supports (height:100svh){:root{--size:clamp(260px,min(94vw,calc(100svh - 270px)),800px)}}
+
+body{
+  --bg1:#05020c;--bg2:#1a0b36;--bg3:#4a1259;
+  --n1:rgba(255,122,200,.30);--n2:rgba(150,110,255,.28);--n3:rgba(90,210,255,.16);
+  --ink:#ffeaf6;--soft:rgba(255,214,238,.78);--glass:rgba(255,255,255,.08);
+  --ring:rgba(255,190,230,.38);--glow:rgba(255,110,190,.38);
+  min-height:100vh;min-height:100svh;overflow-x:hidden;color:var(--ink);
+  font-family:'Cairo','Quicksand',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;
+  transition:--bg1 1.2s,--bg2 1.2s,--bg3 1.2s,--n1 1.2s,--n2 1.2s,--n3 1.2s,--glow 1.2s;
+}
+body[data-theme="violet"]{--bg1:#04030f;--bg2:#140c3a;--bg3:#2e1a78;--n1:rgba(160,120,255,.34);--n2:rgba(255,140,220,.2);--n3:rgba(110,190,255,.2);--ring:rgba(200,185,255,.4);--glow:rgba(165,130,255,.42)}
+body[data-theme="rose"]{--bg1:#0a0306;--bg2:#2a0a1c;--bg3:#6a1a35;--n1:rgba(255,150,170,.3);--n2:rgba(255,200,110,.2);--n3:rgba(255,120,200,.18);--ring:rgba(255,205,160,.4);--glow:rgba(255,170,130,.4)}
+body[data-theme="aurora"]{--bg1:#020a12;--bg2:#0b1f3d;--bg3:#2a2b7a;--n1:rgba(90,230,230,.26);--n2:rgba(170,130,255,.28);--n3:rgba(255,140,210,.2);--ring:rgba(160,235,255,.4);--glow:rgba(120,220,255,.36)}
+
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(130% 80% at 50% 112%,var(--bg3),transparent 62%),
+             radial-gradient(90% 60% at 50% -10%,var(--bg2),transparent 70%),var(--bg1)}
+.neb{position:fixed;z-index:0;width:70vmax;height:70vmax;border-radius:50%;pointer-events:none;will-change:transform;animation:drift 38s ease-in-out infinite alternate}
+.n1{top:-25vmax;right:-20vmax;background:radial-gradient(circle,var(--n1),transparent 65%)}
+.n2{bottom:-30vmax;left:-25vmax;background:radial-gradient(circle,var(--n2),transparent 65%);animation-duration:46s;animation-direction:alternate-reverse}
+.n3{top:28%;left:32%;width:50vmax;height:50vmax;background:radial-gradient(circle,var(--n3),transparent 65%);animation-duration:52s}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vmax,4vmax,0) scale(1.15)}}
+
+canvas{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none}
+#stars{z-index:1}
+#fx{z-index:4}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;justify-content:space-between;gap:10px;pointer-events:none;
+  padding:calc(12px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right)) 0 calc(14px + env(safe-area-inset-left))}
+.btn{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:999px;
+  border:1px solid var(--ring);background:var(--glass);color:var(--ink);font:600 .9rem/1 'Cairo',system-ui,sans-serif;cursor:pointer;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 0 18px -4px var(--glow);
+  transition:transform .2s,background .3s,box-shadow .3s}
+.btn:hover{background:rgba(255,255,255,.16);box-shadow:0 0 26px -2px var(--glow)}
+.btn:active{transform:scale(.95)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.sw{width:15px;height:15px;border-radius:50%;background:conic-gradient(#ffb3d9,#c9a8ff,#a5e6ff,#ffe6a8,#ffb3d9);box-shadow:0 0 8px var(--glow)}
+.eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
+.eq i{width:3px;border-radius:2px;background:currentColor;height:5px}
+.eq i:nth-child(2){height:10px}.eq i:nth-child(3){height:7px}
+.btn.on .eq i{animation:eq .9s ease-in-out infinite}
+.btn.on .eq i:nth-child(2){animation-delay:.2s}.btn.on .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+
+#app{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(6px,1.6vh,16px);text-align:center;
+  padding:calc(66px + env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom))}
+h1{font-family:'Aref Ruqaa','Amiri','Cairo',serif;font-weight:700;font-size:clamp(1.7rem,6vw,2.7rem);line-height:1.35;
+  background:linear-gradient(90deg,#fff,#ffc4e6,#d8c2ff,#bfeaff);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 12px var(--glow))}
+.count{font-size:.95rem;color:var(--soft)}
+
+.wrap{position:relative;width:var(--size);height:var(--size);animation:float 7s ease-in-out infinite}
+.glow{position:absolute;inset:-6%;border-radius:50%;pointer-events:none;filter:blur(18px);
+  background:radial-gradient(closest-side,var(--glow),transparent 72%);animation:glowp 2.6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes glowp{0%,100%{opacity:.5;transform:scale(.96)}12%{opacity:.9;transform:scale(1.05)}24%{opacity:.55;transform:scale(.98)}36%{opacity:.8;transform:scale(1.03)}52%{opacity:.5;transform:scale(.96)}}
+.stage{position:absolute;inset:0;direction:ltr;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none;outline:none}
+.stage:focus-visible{outline:2px dashed var(--ring);outline-offset:6px;border-radius:30%}
+.heart{position:absolute;inset:0;transform-origin:50% 56%;animation:beat 2.6s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}12%{transform:scale(1.035)}24%{transform:scale(1)}36%{transform:scale(1.022)}52%{transform:scale(1)}}
+.boot{position:absolute;inset:0;display:grid;place-items:center;font-size:4rem;color:var(--soft);animation:beat 1.6s ease-in-out infinite}
+
+.w{position:absolute;display:flex;align-items:center;justify-content:center;white-space:nowrap;cursor:default;
+  font-family:'Quicksand','Cairo',system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif;font-weight:600;
+  text-shadow:0 0 7px currentColor;
+  transition:color 1s ease,text-shadow .25s ease,filter .25s ease,scale .3s cubic-bezier(.3,1.6,.5,1)}
+.w.tw{animation:tw var(--td,4s) ease-in-out var(--dl,0s) infinite}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.5}}
+@media (hover:hover){
+  .w:hover{scale:1.4;z-index:3;animation:none;opacity:1;filter:brightness(1.5) saturate(1.2);
+    text-shadow:0 0 3px #fff,0 0 12px currentColor,0 0 26px currentColor}
+}
+
+.tag{font-family:'Aref Ruqaa','Amiri','Cairo',serif;font-weight:700;font-size:clamp(1.25rem,4.8vw,2rem);line-height:1.6;
+  max-width:92vw;color:#ffe3f3;text-shadow:0 0 14px var(--glow)}
+.hint{min-height:1.7em;font-size:.95rem;color:var(--soft);transition:color .3s}
+.hint.hot{color:#fff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+noscript{position:relative;z-index:9;display:block;padding:20px;text-align:center}
+
+@media (max-width:420px){.btn{height:40px;padding:0 13px;font-size:.82rem}}
+@media (prefers-reduced-motion:reduce){
+  .wrap,.heart,.glow,.neb,.boot,.w.tw,.btn.on .eq i{animation:none!important}
+  .w:hover{scale:1}
+}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<div class="neb n1"></div><div class="neb n2"></div><div class="neb n3"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<div class="bar">
+  <button id="theme" class="btn" type="button" aria-label="تغيير الثيم"><span class="sw" aria-hidden="true"></span><span id="themeLbl" aria-live="polite">مجرة وردية</span></button>
+  <button id="music" class="btn" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="musicLbl">تشغيل الموسيقى</span></button>
+</div>
+
+<main id="app">
+  <h1>أحبّك بكل لغات العالم</h1>
+  <p class="count" id="count"></p>
+  <div class="wrap">
+    <div class="glow"></div>
+    <div class="stage" id="stage" role="button" tabindex="0" aria-label="القلب — اضغط لتتناثر القلوب والنجوم">
+      <div class="heart" id="heart" aria-hidden="true"><div class="boot" id="boot">♡</div></div>
+    </div>
+  </div>
+  <p class="sr">قلب مكوّن من عبارة أحبك بعشرات اللغات حول العالم</p>
+  <p class="tag">مهما اختلفت اللغات، يبقى الحب لغة واحدة ♡</p>
+  <p class="hint" id="hint">المس القلب أو أي كلمة ✨</p>
+  <noscript>يحتاج هذا الموقع إلى تفعيل JavaScript ليعمل.</noscript>
+</main>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+(() => {
+'use strict';
+
+/* ───────── البيانات: [النص، رمز اللغة، اسم اللغة بالعربية] ───────── */
+const LANGS = [
+['أحبك','ar','العربية'],['I love you','en','الإنجليزية'],['Je t’aime','fr','الفرنسية'],['Te amo','es','الإسبانية'],
+['Ti amo','it','الإيطالية'],['Ich liebe dich','de','الألمانية'],['愛してる','ja','اليابانية'],['사랑해','ko','الكورية'],
+['Я тебя люблю','ru','الروسية'],['我爱你','zh-Hans','الصينية'],
+['بحبك','ar','العربية (لهجة شامية ومصرية)'],['أعشقك','ar','العربية'],
+['Eu te amo','pt','البرتغالية'],['Seni seviyorum','tr','التركية'],['دوستت دارم','fa','الفارسية'],
+['मुझे तुमसे प्यार है','hi','الهندية'],['Ik hou van je','nl','الهولندية'],['Σ’ αγαπώ','el','اليونانية'],
+['אני אוהב אותך','he','العبرية'],['ฉันรักเธอ','th','التايلاندية'],['Aku cinta kamu','id','الإندونيسية'],
+['Anh yêu em','vi','الفيتنامية'],['Nakupenda','sw','السواحلية'],['Jag älskar dig','sv','السويدية'],
+['Kocham cię','pl','البولندية'],['আমি তোমাকে ভালোবাসি','bn','البنغالية'],['مجھے تم سے محبت ہے','ur','الأردية'],
+['Mahal kita','fil','الفلبينية'],['Jeg elsker deg','nb','النرويجية'],['Jeg elsker dig','da','الدنماركية'],
+['Minä rakastan sinua','fi','الفنلندية'],['Szeretlek','hu','المجرية'],['Te iubesc','ro','الرومانية'],
+['Miluji tě','cs','التشيكية'],['Обичам те','bg','البلغارية'],['Я тебе кохаю','uk','الأوكرانية'],
+['Volim te','hr','الكرواتية'],['Волим те','sr','الصربية'],['Ég elska þig','is','الآيسلندية'],
+['Tá grá agam duit','ga','الأيرلندية'],['T’estimo','ca','الكتالونية'],['Maite zaitut','eu','الباسكية'],
+['Quérote','gl','الغاليسية'],['Të dua','sq','الألبانية'],['Те сакам','mk','المقدونية'],
+['Ljubim te','sl','السلوفينية'],['Ľúbim ťa','sk','السلوفاكية'],['Aš tave myliu','lt','الليتوانية'],
+['Es tevi mīlu','lv','اللاتفية'],['Ma armastan sind','et','الإستونية'],['Mi amas vin','eo','الإسبرانتو'],
+['Amo te','la','اللاتينية'],['Я цябе кахаю','be','البيلاروسية'],['Ես քեզ սիրում եմ','hy','الأرمنية'],
+['მიყვარხარ','ka','الجورجية'],['Səni sevirəm','az','الأذرية'],['Мен сені жақсы көремін','kk','الكازاخية'],
+['Seni sevaman','uz','الأوزبكية'],['Би чамд хайртай','mn','المنغولية'],['நான் உன்னை காதலிக்கிறேன்','ta','التاميلية'],
+['నేను నిన్ను ప్రేమిస్తున్నాను','te','التيلوغوية'],['ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ','kn','الكانادية'],
+['ഞാൻ നിന്നെ സ്നേഹിക്കുന്നു','ml','المالايالامية'],['હું તને પ્રેમ કરું છું','gu','الغوجاراتية'],
+['माझं तुझ्यावर प्रेम आहे','mr','الماراثية'],['ਮੈਨੂੰ ਤੇਰੇ ਨਾਲ ਪਿਆਰ ਹੈ','pa','البنجابية'],
+['म तिमीलाई माया गर्छु','ne','النيبالية'],['මම ඔබට ආදරෙයි','si','السنهالية'],['ខ្ញុំស្រលាញ់អ្នក','km','الخميرية'],
+['ຂ້ອຍຮັກເຈົ້າ','lo','اللاوية'],['ချစ်တယ်','my','البورمية'],['Saya cintakan awak','ms','الماليزية'],
+['Aku tresno karo kowe','jv','الجاوية'],['Gihigugma ta ka','ceb','السيبوانية'],['我愛你','zh-Hant','الصينية التقليدية'],
+['Te quiero','es','الإسبانية'],['Ngiyakuthanda','zu','الزولو'],['Ndiyakuthanda','xh','الخوسا'],
+['Ek is lief vir jou','af','الأفريقانية'],['እወድሃለሁ','am','الأمهرية'],['Ina son ka','ha','الهوسا'],
+['Mo nifẹ rẹ','yo','اليوروبا'],['A hụrụ m gị n’anya','ig','الإيغبو'],['Waan ku jeclahay','so','الصومالية'],
+['Tiako ianao','mg','الملغاشية'],['Ndinokuda','sn','الشونا'],['Ndagukunda','rw','الكينيارواندية'],
+['Nalingi yo','ln','اللينغالا'],['Ke a o rata','st','السوتو'],['Dama la bëgg','wo','الولوفية'],
+['Aloha au iā ʻoe','haw','الهاواوية'],['Aroha au ki a koe','mi','الماورية'],['Ou te alofa ia te oe','sm','الساموية'],
+['Tha gaol agam ort','gd','الغيلية الأسكتلندية'],['Dw i’n dy garu di','cy','الويلزية'],['Inħobbok','mt','المالطية'],
+['Ech hunn dech gär','lb','اللوكسمبورغية'],['איך האב דיך ליב','yi','اليديشية'],['Ez ji te hez dikim','ku','الكردية'],
+['زه تا سره مینه کوم','ps','البشتو'],['Mwen renmen w','ht','الكريولية الهايتية'],['Munakuyki','qu','الكيتشوا'],
+['Rohayhu','gn','الغوارانية']
+];
+const SYMS = ['♡','✦','✧'];
+
+const THEMES = [
+ {id:'galaxy', name:'مجرة وردية', bg:'#05020c',
+  words:['#ffb3d9','#ff8fcf','#e3b8ff','#c9a8ff','#a5e6ff','#ffe6a8','#ffd6ee','#b9c9ff'],
+  stars:['#ffffff','#ffd6f0','#cdb8ff','#bfeaff','#ffe9b0'],
+  burst:['#ff9ed2','#ffc9e6','#d7b6ff','#a8e8ff','#ffe2a0']},
+ {id:'violet', name:'حلم بنفسجي', bg:'#04030f',
+  words:['#d6b8ff','#b99cff','#9f9bff','#8fc0ff','#e6c4ff','#ffc2f0','#a8f0ff','#f3e6ff'],
+  stars:['#ffffff','#e4d6ff','#b9a6ff','#a8d8ff','#ffd0f4'],
+  burst:['#c9a8ff','#e6c4ff','#9fb4ff','#ffc2f0','#a8f0ff']},
+ {id:'rose', name:'ورد وذهب', bg:'#0a0306',
+  words:['#ffd27a','#ffb199','#ff9fb6','#ffc7a6','#f7e0a6','#ff8fa3','#ffe8c9','#ffa9d0'],
+  stars:['#fff4dc','#ffd6a8','#ffb6c8','#ffe9a8','#ffffff'],
+  burst:['#ffd27a','#ff9fb6','#ffc7a6','#ffe8c9','#ff8fa3']},
+ {id:'aurora', name:'شفق سماوي', bg:'#020a12',
+  words:['#8ff3ff','#7bd8ff','#9af7d0','#b8a4ff','#ff9fe0','#c1f5ff','#d4c6ff','#ffe7a3'],
+  stars:['#ffffff','#c1f5ff','#d4c6ff','#ffc2ec','#b9ffe6'],
+  burst:['#8ff3ff','#b8a4ff','#ff9fe0','#9af7d0','#ffe7a3']}
+];
+
+/* ───────── أدوات ───────── */
+const $ = id => document.getElementById(id);
+const stage=$('stage'), heart=$('heart'), hint=$('hint');
+const starCv=$('stars'), fxCv=$('fx');
+const sctx=starCv.getContext('2d'), fx=fxCv.getContext('2d');
+const FONT="'Quicksand','Cairo',system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif";
+const TALL=/[\u0900-\u0DFF\u0E00-\u0EFF\u1000-\u109F\u1780-\u17FF]/;
+const HINT='المس القلب أو أي كلمة ✨';
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const mq=window.matchMedia('(prefers-reduced-motion: reduce)');
+let reduced=mq.matches;
+let themeIdx=0;
+try{const v=parseInt(localStorage.getItem('love-theme'),10); if(THEMES[v]) themeIdx=v;}catch(e){}
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(arr,rnd){for(let i=arr.length-1;i>0;i--){const j=(rnd()*(i+1))|0;[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+
+$('count').textContent = LANGS.length.toLocaleString('ar-EG') + ' كتابة ولغة تهمس بالحب';
+
+/* ───────── قياس النص ───────── */
+const mctx=document.createElement('canvas').getContext('2d');
+const mcache=new Map();
+function measure(text,fs){
+  const k=text+'|'+fs.toFixed(1);
+  let w=mcache.get(k);
+  if(w===undefined){mctx.font='600 '+fs+'px '+FONT;w=mctx.measureText(text).width;mcache.set(k,w);}
+  return w;
+}
+
+/* ───────── توزيع الكلمات داخل شكل القلب ───────── */
+function pack(S,scale,list,seed){
+  const rnd=mulberry32(seed);
+  const s=S/2.34, cx=S/2, cy=S/2, yc=.12;
+  const minPx=S<420?8:9;
+  const tiers=[.062,.05,.041,.034,.028,.023].map(t=>Math.max(minPx,t*S*scale));
+  const placed=[];
+
+  // هل النقطة داخل القلب؟ (معادلة القلب الضمنية مع هامش صغير)
+  const inside=(px,py)=>{
+    let x=(px-cx)/s, y=(cy-py)/s+yc;
+    x*=1.045; y=(y-.15)*1.045+.15;
+    const a=x*x+y*y-1;
+    return a*a*a-x*x*y*y*y<=0;
+  };
+  const fits=(x,y,w,h)=>{
+    const hw=w/2, hh=h/2;
+    return inside(x,y)&&inside(x-hw,y-hh)&&inside(x+hw,y-hh)&&inside(x-hw,y+hh)&&inside(x+hw,y+hh)&&
+      inside(x,y-hh)&&inside(x,y+hh)&&inside(x-hw,y)&&inside(x+hw,y)&&
+      inside(x-hw/2,y-hh)&&inside(x+hw/2,y-hh)&&inside(x-hw/2,y+hh)&&inside(x+hw/2,y+hh);
+  };
+  const free=(x,y,w,h,g)=>{
+    for(let i=0;i<placed.length;i++){
+      const p=placed[i];
+      if(Math.abs(x-p.x)<(w+p.w)/2+g&&Math.abs(y-p.y)<(h+p.h)/2+g)return false;
+    }
+    return true;
+  };
+  const x0=cx-1.15*s,x1=cx+1.15*s,y0=cy-1.13*s,y1=cy+1.13*s;
+
+  function tryPlace(entry,fs,tries){
+    const text=entry[0];
+    const w=measure(text,fs)*1.04+2, h=fs*(TALL.test(text)?1.7:1.28);
+    const g=Math.max(1.5,fs*.1);
+    for(let i=0;i<tries;i++){
+      const x=x0+rnd()*(x1-x0), y=y0+rnd()*(y1-y0);
+      if(!fits(x,y,w,h)||!free(x,y,w,h,g))continue;
+      const it={x,y,w,h,fs,text,lang:entry[1],name:entry[2]};
+      placed.push(it);
+      return it;
+    }
+    return null;
+  }
+
+  let uniq=0;
+  // 1) اللغات الأساسية بخط كبير
+  list.slice(0,10).forEach((e,i)=>{
+    let ok=null;
+    for(let t=(i<6?0:1);t<tiers.length&&!ok;t++) ok=tryPlace(e,tiers[t],260);
+    if(ok)uniq++;
+  });
+  // 2) بقية اللغات
+  const rest=shuffle(list.slice(10),rnd);
+  rest.forEach(e=>{
+    let ok=null;
+    for(let t=1+((rnd()*2)|0);t<tiers.length&&!ok;t++) ok=tryPlace(e,tiers[t],120);
+    if(!ok) ok=tryPlace(e,tiers[tiers.length-1],500);
+    if(ok)uniq++;
+  });
+  // 3) ملء الفراغات الصغيرة بكلمات وزخارف
+  let fails=0;
+  while(fails<260&&placed.length<430){
+    const sym=rnd()<.28;
+    const e=sym?[SYMS[(rnd()*SYMS.length)|0],'','']:list[(rnd()*list.length)|0];
+    const t=Math.min(5,3+((rnd()*3)|0));
+    const it=tryPlace(e,tiers[t]*(sym?1.15:1),14);
+    if(it)fails=0;else fails++;
+  }
+  return {placed,uniq};
+}
+
+/* ───────── بناء القلب في الصفحة ───────── */
+let words=[], builtS=0, built=false;
+
+function build(){
+  const S=stage.clientWidth;
+  if(!S)return;
+  builtS=S;
+  const list=LANGS.slice(0,S<420?92:S<640?108:LANGS.length);
+  let res,scale=S<420?.94:1;
+  for(let i=0;i<7;i++){
+    res=pack(S,scale,list,7);
+    if(res.uniq>=list.length-1)break;
+    scale*=.92;
+  }
+  render(res.placed,S);
+  built=true;
+}
+
+function render(items,S){
+  heart.textContent='';
+  words=[];
+  const frag=document.createDocumentFragment();
+  const rnd=mulberry32(99);
+  items.forEach(it=>{
+    const el=document.createElement('span');
+    el.className='w';
+    el.textContent=it.text;
+    el.dir='auto';
+    if(it.lang)el.lang=it.lang;
+    el.style.cssText='left:'+(it.x-it.w/2).toFixed(1)+'px;top:'+(it.y-it.h/2).toFixed(1)+'px;width:'+it.w.toFixed(1)+
+      'px;height:'+it.h.toFixed(1)+'px;font-size:'+it.fs.toFixed(1)+'px;line-height:'+it.h.toFixed(1)+'px;';
+    if(!reduced&&rnd()<.65){
+      el.classList.add('tw');
+      el.style.setProperty('--td',(2.6+rnd()*4).toFixed(2)+'s');
+      el.style.setProperty('--dl',(-rnd()*6).toFixed(2)+'s');
+    }
+    let t=(it.x/S)*.5+(it.y/S)*.5+(rnd()-.5)*.55;
+    t=((t%1)+1)%1;
+    it.ci=Math.floor(t*8);
+    it.el=el; el._it=it;
+    if(!reduced&&el.animate){
+      el.animate([{opacity:0,scale:.5},{opacity:1,scale:1}],{duration:750,delay:rnd()*1000,fill:'backwards',easing:'ease-out'});
+    }
+    frag.appendChild(el);
+    words.push(it);
+  });
+  heart.appendChild(frag);
+  colorize();
+}
+
+function colorize(){
+  const pal=THEMES[themeIdx].words;
+  words.forEach(it=>{it.el.style.color=pal[it.ci%pal.length];});
+}
+
+/* ───────── التلميح (اسم اللغة) ───────── */
+let hintTimer=0;
+function resetHint(){hint.classList.remove('hot');hint.textContent=HINT;}
+function showName(it){
+  clearTimeout(hintTimer);
+  hint.classList.add('hot');
+  hint.textContent='';
+  const b=document.createElement('bdi');
+  b.textContent='«'+it.text+'»';
+  hint.append(b,' — '+it.name);
+}
+heart.addEventListener('pointerover',e=>{
+  const el=e.target.closest&&e.target.closest('.w');
+  if(el&&el._it&&el._it.name)showName(el._it);
+});
+heart.addEventListener('pointerout',e=>{
+  clearTimeout(hintTimer);
+  hintTimer=setTimeout(resetHint,e.pointerType==='mouse'?250:2200);
+});
+
+/* ───────── النجوم في الخلفية ───────── */
+let SW=innerWidth,SH=innerHeight,dpr=1;
+let stars=[],shoot=null,nextShoot=3000;
+
+function sparkle(c,x,y,s){
+  const k=s*.16;
+  c.beginPath();c.moveTo(x,y-s);
+  c.quadraticCurveTo(x+k,y-k,x+s,y);
+  c.quadraticCurveTo(x+k,y+k,x,y+s);
+  c.quadraticCurveTo(x-k,y+k,x-s,y);
+  c.quadraticCurveTo(x-k,y-k,x,y-s);
+  c.closePath();
+}
+function heartPath(c,s){
+  c.beginPath();c.moveTo(0,s*.9);
+  c.bezierCurveTo(-s*1.35,s*.1,-s*1.05,-s*.95,0,-s*.4);
+  c.bezierCurveTo(s*1.05,-s*.95,s*1.35,s*.1,0,s*.9);
+  c.closePath();
+}
+function sizeCanvases(){
+  dpr=Math.min(2,window.devicePixelRatio||1);
+  SW=innerWidth;SH=innerHeight;
+  [starCv,fxCv].forEach(c=>{c.width=Math.round(SW*dpr);c.height=Math.round(SH*dpr);});
+  sctx.setTransform(dpr,0,0,dpr,0,0);
+  fx.setTransform(dpr,0,0,dpr,0,0);
+}
+function initStars(){
+  const n=Math.max(90,Math.min(260,Math.round(SW*SH/5500)));
+  stars=[];
+  for(let i=0;i<n;i++){
+    stars.push({x:Math.random(),y:Math.random(),r:.4+Math.pow(Math.random(),3)*1.9,
+      tw:Math.random()*6.283,sp:.5+Math.random()*1.6,v:2+Math.random()*7,ci:(Math.random()*5)|0});
+  }
+}
+function drawStars(t,dt){
+  sctx.clearRect(0,0,SW,SH);
+  const cols=THEMES[themeIdx].stars;
+  for(const st of stars){
+    if(!reduced){
+      st.y-=st.v*dt/SH; if(st.y<-.02)st.y=1.02;
+      st.x+=Math.sin(t/4000+st.tw)*.00002;
+    }
+    const a=reduced?.8:.35+.65*(.5+.5*Math.sin(t/1000*st.sp+st.tw));
+    const x=st.x*SW,y=st.y*SH;
+    sctx.globalAlpha=a;
+    sctx.fillStyle=cols[st.ci%cols.length];
+    if(st.r>1.55){
+      sctx.shadowColor=sctx.fillStyle;sctx.shadowBlur=8;
+      sparkle(sctx,x,y,st.r*3.2);sctx.fill();
+      sctx.shadowBlur=0;
+    }else{
+      sctx.beginPath();sctx.arc(x,y,st.r,0,6.283);sctx.fill();
+    }
+  }
+  sctx.globalAlpha=1;
+  if(!reduced){
+    if(!shoot&&t>nextShoot){
+      shoot={x:SW*.2+Math.random()*SW*.8,y:Math.random()*SH*.4,vx:-(380+Math.random()*200),vy:220+Math.random()*120,life:0,max:.9};
+    }
+    if(shoot){
+      shoot.life+=dt;shoot.x+=shoot.vx*dt;shoot.y+=shoot.vy*dt;
+      const k=1-shoot.life/shoot.max;
+      const tx=shoot.x-shoot.vx*.14,ty=shoot.y-shoot.vy*.14;
+      const g=sctx.createLinearGradient(shoot.x,shoot.y,tx,ty);
+      g.addColorStop(0,'rgba(255,255,255,'+Math.max(0,k)+')');
+      g.addColorStop(1,'rgba(255,255,255,0)');
+      sctx.strokeStyle=g;sctx.lineWidth=1.8;sctx.lineCap='round';
+      sctx.beginPath();sctx.moveTo(shoot.x,shoot.y);sctx.lineTo(tx,ty);sctx.stroke();
+      if(shoot.life>shoot.max){shoot=null;nextShoot=t+5000+Math.random()*7000;}
+    }
+  }
+}
+
+/* ───────── انفجار القلوب والنجوم ───────── */
+const parts=[];
+function burst(x,y,count){
+  const th=THEMES[themeIdx].burst;
+  const n=count||(reduced?10:44);
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2;
+    const sp=(reduced?40:90)+Math.random()*(reduced?60:260);
+    parts.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-40,life:0,
+      max:(reduced?.7:1.1)+Math.random()*.9,s:5+Math.random()*9,r:Math.random()*6.283,
+      vr:(Math.random()-.5)*4,type:Math.random()<.55?'h':'s',c:th[(Math.random()*th.length)|0]});
+  }
+  kick();
+}
+function drawFx(dt){
+  fx.clearRect(0,0,SW,SH);
+  for(let i=parts.length-1;i>=0;i--){
+    const p=parts[i];
+    p.life+=dt;
+    if(p.life>=p.max){parts.splice(i,1);continue;}
+    const k=1-p.life/p.max;
+    const drag=Math.max(0,1-2.4*dt);
+    p.vx*=drag;p.vy=p.vy*drag-30*dt;
+    p.x+=p.vx*dt;p.y+=p.vy*dt;p.r+=p.vr*dt;
+    fx.save();
+    fx.translate(p.x,p.y);
+    fx.globalAlpha=Math.min(1,k*1.6);
+    fx.fillStyle=p.c;fx.shadowColor=p.c;fx.shadowBlur=12;
+    const sz=p.s*(.6+.4*k);
+    if(p.type==='h'){fx.rotate(Math.sin(p.r)*.4);heartPath(fx,sz*.55);}
+    else{fx.rotate(p.r);sparkle(fx,0,0,sz);}
+    fx.fill();
+    fx.restore();
+  }
+}
+
+let raf=0,last=0;
+function kick(){if(!raf){last=performance.now();raf=requestAnimationFrame(frame);}}
+function frame(t){
+  raf=0;
+  const dt=Math.min(.05,(t-last)/1000);last=t;
+  if(!reduced)drawStars(t,dt);
+  drawFx(dt);
+  if(!reduced||parts.length)raf=requestAnimationFrame(frame);
+}
+
+/* ───────── التفاعل مع القلب ───────── */
+function wave(cx,cy){
+  if(reduced)return;
+  const r=stage.getBoundingClientRect();
+  const ox=cx-r.left,oy=cy-r.top;
+  words.forEach(it=>{
+    if(!it.el.animate)return;
+    const d=Math.hypot(it.x-ox,it.y-oy);
+    it.el.animate([
+      {scale:1,filter:'brightness(1)'},
+      {scale:1.55,filter:'brightness(1.8)',offset:.4},
+      {scale:1,filter:'brightness(1)'}
+    ],{duration:650,delay:d*1.1,easing:'ease-in-out'});
+  });
+}
+function beat(){
+  if(reduced||!stage.animate)return;
+  stage.animate([{transform:'scale(1)'},{transform:'scale(1.06)',offset:.3},{transform:'scale(1)'}],{duration:520,easing:'ease-out'});
+}
+function celebrate(x,y){burst(x,y);wave(x,y);beat();}
+stage.addEventListener('pointerdown',e=>{if(e.button>0)return;celebrate(e.clientX,e.clientY);});
+stage.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){
+    e.preventDefault();
+    const r=stage.getBoundingClientRect();
+    celebrate(r.left+r.width/2,r.top+r.height/2);
+  }
+});
+
+/* ───────── الثيمات ───────── */
+function applyTheme(i){
+  themeIdx=i;
+  const th=THEMES[i];
+  document.body.dataset.theme=th.id;
+  $('themeLbl').textContent=th.name;
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',th.bg);
+  colorize();
+  if(reduced)drawStars(0,0);
+  try{localStorage.setItem('love-theme',String(i));}catch(e){}
+}
+$('theme').addEventListener('click',e=>{
+  applyTheme((themeIdx+1)%THEMES.length);
+  const r=e.currentTarget.getBoundingClientRect();
+  burst(r.left+r.width/2,r.top+r.height/2,16);
+});
+
+/* ───────── الموسيقى (تُولَّد بالكود — لا ملفات صوت) ───────── */
+const Music=(()=>{
+  let ctx=null,master=null,timer=0,beatN=0,nextT=0,on=false;
+  const BEAT=.8;
+  const CH=[
+    {pad:[220,261.63,329.63],bass:110,arp:[440,523.25,659.25,880]},
+    {pad:[174.61,220,261.63],bass:87.31,arp:[349.23,440,523.25,698.46]},
+    {pad:[261.63,329.63,392],bass:130.81,arp:[523.25,659.25,784,1046.5]},
+    {pad:[196,246.94,293.66],bass:98,arp:[392,493.88,587.33,784]}
+  ];
+  const PAT=[0,2,1,3,2,1,3,2];
+  function init(){
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)throw new Error('no-audio');
+    ctx=new AC();
+    master=ctx.createGain();master.gain.value=0;
+    const lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=2400;lp.Q.value=.3;
+    const dly=ctx.createDelay(2);dly.delayTime.value=.56;
+    const fb=ctx.createGain();fb.gain.value=.42;
+    const wet=ctx.createGain();wet.gain.value=.38;
+    const dlp=ctx.createBiquadFilter();dlp.type='lowpass';dlp.frequency.value=1600;
+    master.connect(lp);lp.connect(ctx.destination);
+    lp.connect(dly);dly.connect(dlp);dlp.connect(fb);fb.connect(dly);
+    dlp.connect(wet);wet.connect(ctx.destination);
+  }
+  function tone(f,t,d,v,type,atk){
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.type=type;o.frequency.value=f;o.detune.value=(Math.random()-.5)*8;
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.linearRampToValueAtTime(v,t+atk);
+    g.gain.exponentialRampToValueAtTime(.0001,t+d);
+    o.connect(g);g.connect(master);
+    o.start(t);o.stop(t+d+.1);
+  }
+  function playBeat(b,t){
+    const c=CH[Math.floor(b/8)%4],i=b%8;
+    if(i===0){
+      c.pad.forEach(f=>tone(f,t,6.8,.05,'sine',1.6));
+      tone(c.bass,t,6.4,.07,'sine',.8);
+    }
+    if(Math.random()<.82)tone(c.arp[PAT[i]],t,2.6,.075,'triangle',.015);
+    if(i%4===2&&Math.random()<.5)tone(c.arp[PAT[i]]*2,t,2,.03,'sine',.02);
+  }
+  function sched(){
+    while(nextT<ctx.currentTime+.8){playBeat(beatN,nextT);beatN++;nextT+=BEAT;}
+  }
+  return {
+    get on(){return on;},
+    start(){
+      if(!ctx)init();
+      ctx.resume();
+      if(beatN===0)nextT=ctx.currentTime+.1;
+      on=true;
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setTargetAtTime(.85,ctx.currentTime,.5);
+      clearInterval(timer);timer=setInterval(sched,200);sched();
+    },
+    stop(){
+      on=false;clearInterval(timer);
+      if(!ctx)return;
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setTargetAtTime(0,ctx.currentTime,.15);
+      setTimeout(()=>{if(!on)ctx.suspend();},700);
+    },
+    pause(){if(ctx&&on)ctx.suspend();},
+    resume(){if(ctx&&on)ctx.resume();}
+  };
+})();
+
+const musicBtn=$('music');
+function setMusicUI(){
+  musicBtn.classList.toggle('on',Music.on);
+  musicBtn.setAttribute('aria-pressed',String(Music.on));
+  $('musicLbl').textContent=Music.on?'إيقاف الموسيقى':'تشغيل الموسيقى';
+}
+musicBtn.addEventListener('click',()=>{
+  try{
+    if(Music.on)Music.stop();else Music.start();
+  }catch(e){
+    musicBtn.disabled=true;
+    $('musicLbl').textContent='الصوت غير مدعوم';
+  }
+  setMusicUI();
+});
+document.addEventListener('visibilitychange',()=>{document.hidden?Music.pause():Music.resume();});
+
+/* ───────── الإقلاع ───────── */
+const ALLTXT=LANGS.map(l=>l[0]).join('')+SYMS.join('');
+async function fontsReady(){
+  const link=$('gfonts');
+  const cssReady=new Promise(res=>{
+    if(!link||link.sheet){res();return;}
+    link.addEventListener('load',res,{once:true});
+    link.addEventListener('error',res,{once:true});
+  });
+  await Promise.race([cssReady,sleep(2500)]);
+  if(document.fonts&&document.fonts.load){
+    try{
+      await Promise.race([Promise.all([
+        document.fonts.load('600 16px Quicksand',ALLTXT),
+        document.fonts.load('600 16px Cairo',ALLTXT),
+        document.fonts.load('700 24px "Aref Ruqaa"','مهما اختلفت اللغات')
+      ]),sleep(2500)]);
+    }catch(e){}
+  }
+}
+
+let rz=0,fd=0;
+addEventListener('resize',()=>{
+  clearTimeout(rz);
+  rz=setTimeout(()=>{
+    sizeCanvases();
+    if(reduced)drawStars(0,0);
+    if(built&&Math.abs(stage.clientWidth-builtS)>1)build();
+  },180);
+});
+if(document.fonts&&document.fonts.addEventListener){
+  document.fonts.addEventListener('loadingdone',()=>{
+    if(!built)return;
+    clearTimeout(fd);fd=setTimeout(build,250);
+  });
+}
+const onMotion=()=>{
+  reduced=mq.matches;
+  if(built)build();
+  if(reduced){drawStars(0,0);}else{kick();}
+};
+if(mq.addEventListener)mq.addEventListener('change',onMotion);
+else if(mq.addListener)mq.addListener(onMotion);
+
+(async function boot(){
+  applyTheme(themeIdx);
+  sizeCanvases();
+  initStars();
+  if(reduced)drawStars(0,0);else kick();
+  await fontsReady();
+  build();
+  setMusicUI();
+})();
+})();
+</script>
+</body>
+</html>
 
